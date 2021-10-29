@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>
+        Tipos de Comunicación y Transformada de Fourier - HackMD
+    </title>
+    <link rel="icon" type="image/png" href="https://hackmd.io/favicon.png">
+    <link rel="apple-touch-icon" href="https://hackmd.io/apple-touch-icon.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css" integrity="sha256-3iu9jgsy9TpTwXKb7bNQzqWekRX7pPK+2OLj3R922fo=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/3.5.0/octicons.min.css" integrity="sha256-QiWfLIsCT02Sdwkogf6YMiQlj4NE84MKkzEMkZnMGdg=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/themes/prism.min.css" integrity="sha256-vtR0hSWRc3Tb26iuN2oZHt3KRUomwTufNIf5/4oeCyg=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@hackmd/emojify.js@2.1.0/dist/css/basic/emojify.min.css" integrity="sha256-UOrvMOsSDSrW6szVLe8ZDZezBxh5IoIfgTwdNDgTjiU=" crossorigin="anonymous" />
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i|Source+Code+Pro:300,400,500|Source+Sans+Pro:300,300i,400,400i,600,600i|Source+Serif+Pro&subset=latin-ext);.hljs{display:block;background:#fff;padding:.5em;color:#333;overflow-x:auto}.hljs-comment,.hljs-meta{color:#969896}.hljs-emphasis,.hljs-quote,.hljs-string,.hljs-strong,.hljs-template-variable,.hljs-variable{color:#df5000}.hljs-keyword,.hljs-selector-tag,.hljs-type{color:#a71d5d}.hljs-attribute,.hljs-bullet,.hljs-literal,.hljs-number,.hljs-symbol{color:#0086b3}.hljs-built_in,.hljs-builtin-name{color:#005cc5}.hljs-name,.hljs-section{color:#63a35c}.hljs-tag{color:#333}.hljs-attr,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-id,.hljs-selector-pseudo,.hljs-title{color:#795da3}.hljs-addition{color:#55a532;background-color:#eaffea}.hljs-deletion{color:#bd2c00;background-color:#ffecec}.hljs-link{text-decoration:underline}.markdown-body{font-size:16px;line-height:1.5;word-wrap:break-word}.markdown-body:after,.markdown-body:before{display:table;content:""}.markdown-body:after{clear:both}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:#c00}.markdown-body .anchor{float:left;padding-right:4px;margin-left:-20px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body blockquote,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;padding:0;margin:24px 0;background-color:#e7e7e7;border:0}.markdown-body blockquote{font-size:16px;padding:0 1em;color:#777;border-left:.25em solid #ddd}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body kbd,.popover kbd{display:inline-block;padding:3px 5px;font-size:11px;line-height:10px;color:#555;vertical-align:middle;background-color:#fcfcfc;border:1px solid #ccc;border-bottom-color:#bbb;border-radius:3px;box-shadow:inset 0 -1px 0 #bbb}.markdown-body .loweralpha{list-style-type:lower-alpha}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:#000;vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 code,.markdown-body h1 tt,.markdown-body h2 code,.markdown-body h2 tt,.markdown-body h3 code,.markdown-body h3 tt,.markdown-body h4 code,.markdown-body h4 tt,.markdown-body h5 code,.markdown-body h5 tt,.markdown-body h6 code,.markdown-body h6 tt{font-size:inherit}.markdown-body h1{font-size:2em}.markdown-body h1,.markdown-body h2{padding-bottom:.3em;border-bottom:1px solid #eee}.markdown-body h2{font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{font-size:.85em;color:#777}.markdown-body ol,.markdown-body ul{padding-left:2em}.markdown-body ol.no-list,.markdown-body ul.no-list{padding:0;list-style-type:none}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{padding-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}.markdown-body dl dd{padding:0 16px;margin-bottom:16px}.markdown-body table{display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}.markdown-body table th{font-weight:700}.markdown-body table td,.markdown-body table th{padding:6px 13px;border:1px solid #ddd}.markdown-body table tr{background-color:#fff;border-top:1px solid #ccc}.markdown-body table tr:nth-child(2n){background-color:#f8f8f8}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:#fff}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:transparent}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{display:block;float:left;width:auto;padding:7px;margin:13px 0 0;overflow:hidden;border:1px solid #ddd}.markdown-body span.frame span img{display:block;float:left}.markdown-body span.frame span span{display:block;padding:5px 0 0;clear:both;color:#333}.markdown-body span.align-center{display:block;overflow:hidden;clear:both}.markdown-body span.align-center>span{display:block;margin:13px auto 0;overflow:hidden;text-align:center}.markdown-body span.align-center span img{margin:0 auto;text-align:center}.markdown-body span.align-right{display:block;overflow:hidden;clear:both}.markdown-body span.align-right>span{display:block;margin:13px 0 0;overflow:hidden;text-align:right}.markdown-body span.align-right span img{margin:0;text-align:right}.markdown-body span.float-left{display:block;float:left;margin-right:13px;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{display:block;float:right;margin-left:13px;overflow:hidden}.markdown-body span.float-right>span{display:block;margin:13px auto 0;overflow:hidden;text-align:right}.markdown-body code,.markdown-body tt{padding:0;padding-top:.2em;padding-bottom:.2em;margin:0;font-size:85%;background-color:rgba(0,0,0,.04);border-radius:3px}.markdown-body code:after,.markdown-body code:before,.markdown-body tt:after,.markdown-body tt:before{letter-spacing:-.2em;content:"\00a0"}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{text-decoration:inherit}.markdown-body pre{word-wrap:normal}.markdown-body pre>code{padding:0;margin:0;font-size:100%;word-break:normal;white-space:pre;background:transparent;border:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body .highlight pre,.markdown-body pre{padding:16px;overflow:auto;font-size:85%;line-height:1.45;background-color:#f7f7f7;border-radius:3px}.markdown-body pre code,.markdown-body pre tt{display:inline;max-width:auto;padding:0;margin:0;overflow:visible;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}.markdown-body pre code:after,.markdown-body pre code:before,.markdown-body pre tt:after,.markdown-body pre tt:before{content:normal}.markdown-body .csv-data td,.markdown-body .csv-data th{padding:5px;overflow:hidden;font-size:12px;line-height:1;text-align:left;white-space:nowrap}.markdown-body .csv-data .blob-line-num{padding:10px 8px 9px;text-align:right;background:#fff;border:0}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{font-weight:700;background:#f8f8f8;border-top:0}.news .alert .markdown-body blockquote{padding:0 0 0 40px;border:0 none}.activity-tab .news .alert .commits,.activity-tab .news .markdown-body blockquote{padding-left:0}.task-list-item{list-style-type:none}.task-list-item label{font-weight:400}.task-list-item.enabled label{cursor:pointer}.task-list-item+.task-list-item{margin-top:3px}.task-list-item-checkbox{float:left;margin:.31em 0 .2em -1.3em!important;vertical-align:middle;cursor:default!important}.markdown-body{padding-top:40px;padding-bottom:40px;max-width:758px;overflow:visible!important;position:relative}.markdown-body .emoji{vertical-align:top}.markdown-body pre{border:inherit!important}.markdown-body code{color:inherit!important}.markdown-body pre code .wrapper{display:-moz-inline-flex;display:-ms-inline-flex;display:-o-inline-flex;display:inline-flex}.markdown-body pre code .gutter{float:left;overflow:hidden;-webkit-user-select:none;user-select:none}.markdown-body pre code .gutter.linenumber{text-align:right;position:relative;display:inline-block;cursor:default;z-index:4;padding:0 8px 0 0;min-width:20px;box-sizing:content-box;color:#afafaf!important;border-right:3px solid #6ce26c!important}.markdown-body pre code .gutter.linenumber>span:before{content:attr(data-linenumber)}.markdown-body pre code .code{float:left;margin:0 0 0 16px}.markdown-body .gist .line-numbers{border-left:none;border-top:none;border-bottom:none}.markdown-body .gist .line-data{border:none}.markdown-body .gist table{border-spacing:0;border-collapse:inherit!important}.markdown-body code[data-gist-id]{background:none;padding:0}.markdown-body code[data-gist-id]:after,.markdown-body code[data-gist-id]:before{content:""}.markdown-body code[data-gist-id] .blob-num{border:unset}.markdown-body code[data-gist-id] table{overflow:unset;margin-bottom:unset}.markdown-body code[data-gist-id] table tr{background:unset}.markdown-body[dir=rtl] pre{direction:ltr}.markdown-body[dir=rtl] code{direction:ltr;unicode-bidi:embed}.markdown-body .alert>p{margin-bottom:0}.markdown-body pre.abc,.markdown-body pre.flow-chart,.markdown-body pre.graphviz,.markdown-body pre.mermaid,.markdown-body pre.sequence-diagram,.markdown-body pre.vega{text-align:center;background-color:inherit;border-radius:0;white-space:inherit;overflow:visible}.markdown-body pre.abc>code,.markdown-body pre.flow-chart>code,.markdown-body pre.graphviz>code,.markdown-body pre.mermaid>code,.markdown-body pre.sequence-diagram>code,.markdown-body pre.vega>code{text-align:left}.markdown-body pre.abc>svg,.markdown-body pre.flow-chart>svg,.markdown-body pre.graphviz>svg,.markdown-body pre.mermaid>svg,.markdown-body pre.sequence-diagram>svg,.markdown-body pre.vega>svg{max-width:100%;height:100%}.markdown-body pre>code.wrap{white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word}.markdown-body .alert>p,.markdown-body .alert>ul{margin-bottom:0}.markdown-body summary{display:list-item}.markdown-body summary:focus{outline:none}.markdown-body details summary{cursor:pointer}.markdown-body details:not([open])>:not(summary){display:none}.markdown-body figure{margin:1em 40px}.markdown-body .mark,.markdown-body mark{background-color:#fff1a7}.vimeo,.youtube{cursor:pointer;display:table;text-align:center;background-position:50%;background-repeat:no-repeat;background-size:contain;background-color:#000;overflow:hidden}.vimeo,.youtube{position:relative;width:100%}.youtube{padding-bottom:56.25%}.vimeo img{width:100%;object-fit:contain;z-index:0}.youtube img{object-fit:cover;z-index:0}.vimeo iframe,.youtube iframe,.youtube img{width:100%;height:100%;position:absolute;top:0;left:0}.vimeo iframe,.youtube iframe{vertical-align:middle;z-index:1}.vimeo .icon,.youtube .icon{position:absolute;height:auto;width:auto;top:50%;left:50%;transform:translate(-50%,-50%);color:#fff;opacity:.3;transition:opacity .2s;z-index:0}.vimeo:hover .icon,.youtube:hover .icon{opacity:.6;transition:opacity .2s}.slideshare .inner,.speakerdeck .inner{position:relative;width:100%}.slideshare .inner iframe,.speakerdeck .inner iframe{position:absolute;top:0;bottom:0;left:0;right:0;width:100%;height:100%}.figma{display:table;position:relative;width:100%;padding-bottom:56.25%}.figma iframe{position:absolute;top:0;bottom:0;left:0;right:0;width:100%;height:100%;border:1px solid #eee}.MJX_Assistive_MathML{display:none}#MathJax_Message{z-index:1000!important}.ui-infobar{position:relative;z-index:2;max-width:760px;margin:25px auto -25px;color:#777}.toc .invisable-node{list-style-type:none}.ui-toc{position:fixed;bottom:20px;z-index:998}.ui-toc.both-mode{margin-left:8px}.ui-toc.both-mode .ui-toc-label{height:40px;padding:10px 4px;border-top-left-radius:0;border-bottom-left-radius:0}.ui-toc-label{background-color:#e6e6e6;border:none;color:#868686;transition:opacity .2s}.ui-toc .open .ui-toc-label{opacity:1;color:#fff;transition:opacity .2s}.ui-toc-label:focus{opacity:.3;background-color:#ccc;color:#000}.ui-toc-label:hover{opacity:1;background-color:#ccc;transition:opacity .2s}.ui-toc-dropdown{margin-top:20px;margin-bottom:20px;padding-left:10px;padding-right:10px;max-width:45vw;width:25vw;max-height:70vh;overflow:auto;text-align:inherit}.ui-toc-dropdown>.toc{max-height:calc(70vh - 100px);overflow:auto}.ui-toc-dropdown[dir=rtl] .nav{padding-right:0;letter-spacing:.0029em}.ui-toc-dropdown a{overflow:hidden;text-overflow:ellipsis;white-space:pre}.ui-toc-dropdown .nav>li>a{display:block;padding:4px 20px;font-size:13px;font-weight:500;color:#767676}.ui-toc-dropdown .nav>li:first-child:last-child>ul,.ui-toc-dropdown .toc.expand ul{display:block}.ui-toc-dropdown .nav>li>a:focus,.ui-toc-dropdown .nav>li>a:hover{padding-left:19px;color:#000;text-decoration:none;background-color:transparent;border-left:1px solid #000}.ui-toc-dropdown[dir=rtl] .nav>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav>li>a:hover{padding-right:19px;border-left:none;border-right:1px solid #000}.ui-toc-dropdown .nav>.active:focus>a,.ui-toc-dropdown .nav>.active:hover>a,.ui-toc-dropdown .nav>.active>a{padding-left:18px;font-weight:700;color:#000;background-color:transparent;border-left:2px solid #000}.ui-toc-dropdown[dir=rtl] .nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav>.active>a{padding-right:18px;border-left:none;border-right:2px solid #000}.ui-toc-dropdown .nav .nav{display:none;padding-bottom:10px}.ui-toc-dropdown .nav>.active>ul{display:block}.ui-toc-dropdown .nav .nav>li>a{padding-top:1px;padding-bottom:1px;padding-left:30px;font-size:12px;font-weight:400}.ui-toc-dropdown[dir=rtl] .nav .nav>li>a{padding-right:30px}.ui-toc-dropdown .nav .nav>li>ul>li>a{padding-top:1px;padding-bottom:1px;padding-left:40px;font-size:12px;font-weight:400}.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a{padding-right:40px}.ui-toc-dropdown .nav .nav>li>a:focus,.ui-toc-dropdown .nav .nav>li>a:hover{padding-left:29px}.ui-toc-dropdown[dir=rtl] .nav .nav>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav .nav>li>a:hover{padding-right:29px}.ui-toc-dropdown .nav .nav>li>ul>li>a:focus,.ui-toc-dropdown .nav .nav>li>ul>li>a:hover{padding-left:39px}.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a:hover{padding-right:39px}.ui-toc-dropdown .nav .nav>.active:focus>a,.ui-toc-dropdown .nav .nav>.active:hover>a,.ui-toc-dropdown .nav .nav>.active>a{padding-left:28px;font-weight:500}.ui-toc-dropdown[dir=rtl] .nav .nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>a{padding-right:28px}.ui-toc-dropdown .nav .nav>.active>.nav>.active:focus>a,.ui-toc-dropdown .nav .nav>.active>.nav>.active:hover>a,.ui-toc-dropdown .nav .nav>.active>.nav>.active>a{padding-left:38px;font-weight:500}.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active>a{padding-right:38px}.markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,sans-serif}html[lang^=ja] .markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,Hiragino Kaku Gothic Pro,ヒラギノ角ゴ Pro W3,Osaka,Meiryo,メイリオ,MS Gothic,ＭＳ\ ゴシック,sans-serif}html[lang=zh-tw] .markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,PingFang TC,Microsoft JhengHei,微軟正黑,sans-serif}html[lang=zh-cn] .markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,PingFang SC,Microsoft YaHei,微软雅黑,sans-serif}html .markdown-body[lang^=ja]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,Hiragino Kaku Gothic Pro,ヒラギノ角ゴ Pro W3,Osaka,Meiryo,メイリオ,MS Gothic,ＭＳ\ ゴシック,sans-serif}html .markdown-body[lang=zh-tw]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,PingFang TC,Microsoft JhengHei,微軟正黑,sans-serif}html .markdown-body[lang=zh-cn]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,PingFang SC,Microsoft YaHei,微软雅黑,sans-serif}html[lang^=ja] .ui-toc-dropdown{font-family:Source Sans Pro,Helvetica,Arial,Meiryo UI,MS PGothic,ＭＳ\ Ｐゴシック,sans-serif}html[lang=zh-tw] .ui-toc-dropdown{font-family:Source Sans Pro,Helvetica,Arial,Microsoft JhengHei UI,微軟正黑UI,sans-serif}html[lang=zh-cn] .ui-toc-dropdown{font-family:Source Sans Pro,Helvetica,Arial,Microsoft YaHei UI,微软雅黑UI,sans-serif}html .ui-toc-dropdown[lang^=ja]{font-family:Source Sans Pro,Helvetica,Arial,Meiryo UI,MS PGothic,ＭＳ\ Ｐゴシック,sans-serif}html .ui-toc-dropdown[lang=zh-tw]{font-family:Source Sans Pro,Helvetica,Arial,Microsoft JhengHei UI,微軟正黑UI,sans-serif}html .ui-toc-dropdown[lang=zh-cn]{font-family:Source Sans Pro,Helvetica,Arial,Microsoft YaHei UI,微软雅黑UI,sans-serif}.ui-affix-toc{position:fixed;top:0;max-width:15vw;max-height:70vh;overflow:auto}.back-to-top,.expand-toggle,.go-to-bottom{display:block;padding:4px 10px;margin-top:10px;margin-left:10px;font-size:12px;font-weight:500;color:#999}.back-to-top:focus,.back-to-top:hover,.expand-toggle:focus,.expand-toggle:hover,.go-to-bottom:focus,.go-to-bottom:hover{color:#563d7c;text-decoration:none}.back-to-top,.go-to-bottom{margin-top:0}.ui-user-icon{width:20px;height:20px;display:block;border-radius:50%;margin-top:2px;margin-bottom:2px;margin-right:5px;background-position:50%;background-repeat:no-repeat;background-size:cover}.ui-user-icon.small{width:18px;height:18px;display:inline-block;vertical-align:middle;margin:0 0 .2em}.ui-infobar>small>span{line-height:22px}.ui-infobar>small .dropdown{display:inline-block}.ui-infobar>small .dropdown a:focus,.ui-infobar>small .dropdown a:hover{text-decoration:none}.ui-more-info{color:#888;cursor:pointer;vertical-align:middle}.ui-more-info .fa{font-size:16px}.ui-connectedGithub,.ui-published-note{color:#888}.ui-connectedGithub{line-height:23px;white-space:nowrap}.ui-connectedGithub a.file-path{color:#888;text-decoration:none;padding-left:22px}.ui-connectedGithub a.file-path:active,.ui-connectedGithub a.file-path:hover{color:#888;text-decoration:underline}.ui-connectedGithub .fa{font-size:20px}.ui-published-note .fa{font-size:20px;vertical-align:top}.unselectable{-webkit-user-select:none;-o-user-select:none;user-select:none}.selectable{-webkit-user-select:text;-o-user-select:text;user-select:text}@media print{blockquote,div,img,pre,table{page-break-inside:avoid!important}a[href]:after{font-size:12px!important}}.markdown-body.slides{position:relative;z-index:1;color:#222}.markdown-body.slides:before{content:"";display:block;position:absolute;top:0;left:0;right:0;bottom:0;z-index:-1;background-color:currentColor;box-shadow:0 0 0 50vw}.markdown-body.slides section[data-markdown]{position:relative;margin-bottom:1.5em;background-color:#fff;text-align:center}.markdown-body.slides section[data-markdown] code{text-align:left}.markdown-body.slides section[data-markdown]:before{content:"";display:block;padding-bottom:56.23%}.markdown-body.slides section[data-markdown]>div:first-child{position:absolute;top:50%;left:1em;right:1em;transform:translateY(-50%);max-height:100%;overflow:hidden}.markdown-body.slides section[data-markdown]>ul{display:inline-block}.markdown-body.slides>section>section+section:after{content:"";position:absolute;top:-1.5em;right:1em;height:1.5em;border:3px solid #777}.site-ui-font{font-family:Source Sans Pro,Helvetica,Arial,sans-serif}html[lang^=ja] .site-ui-font{font-family:Source Sans Pro,Helvetica,Arial,Hiragino Kaku Gothic Pro,ヒラギノ角ゴ Pro W3,Osaka,Meiryo,メイリオ,MS Gothic,ＭＳ\ ゴシック,sans-serif}html[lang=zh-tw] .site-ui-font{font-family:Source Sans Pro,Helvetica,Arial,PingFang TC,Microsoft JhengHei,微軟正黑,sans-serif}html[lang=zh-cn] .site-ui-font{font-family:Source Sans Pro,Helvetica,Arial,PingFang SC,Microsoft YaHei,微软雅黑,sans-serif}body{font-smoothing:subpixel-antialiased!important;-webkit-font-smoothing:subpixel-antialiased!important;-moz-osx-font-smoothing:auto!important;text-shadow:0 0 1em transparent,1px 1px 1.2px rgba(0,0,0,.004);-webkit-overflow-scrolling:touch;letter-spacing:.025em;font-family:Source Sans Pro,Helvetica,Arial,sans-serif}html[lang^=ja] body{font-family:Source Sans Pro,Helvetica,Arial,Hiragino Kaku Gothic Pro,ヒラギノ角ゴ Pro W3,Osaka,Meiryo,メイリオ,MS Gothic,ＭＳ\ ゴシック,sans-serif}html[lang=zh-tw] body{font-family:Source Sans Pro,Helvetica,Arial,PingFang TC,Microsoft JhengHei,微軟正黑,sans-serif}html[lang=zh-cn] body{font-family:Source Sans Pro,Helvetica,Arial,PingFang SC,Microsoft YaHei,微软雅黑,sans-serif}abbr[title]{border-bottom:none;text-decoration:underline;-webkit-text-decoration:underline dotted;text-decoration:underline dotted}abbr[data-original-title],abbr[title]{cursor:help}body.modal-open{overflow-y:auto;padding-right:0!important}
+    </style>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" integrity="sha256-3Jy/GbSLrg0o9y5Z5n1uw0qxZECH7C6OQpVBgNFYa0g=" crossorigin="anonymous"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js" integrity="sha256-g6iAfvZp+nDQ2TdTR/VVKJf3bGro4ub5fvWSWVRi2NE=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.9/es5-shim.min.js" integrity="sha256-8E4Is26QH0bD52WoQpcB+R/tcWQtpzlCojrybUd7Mxo=" crossorigin="anonymous"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div id="doc" class="markdown-body container-fluid comment-enabled comment-inner" data-hard-breaks="true"><h1 id="Tipos-de-Comunicación-y-Transformada-de-Fourier" data-id="Tipos-de-Comunicación-y-Transformada-de-Fourier"><a class="anchor hidden-xs" href="#Tipos-de-Comunicación-y-Transformada-de-Fourier" title="Tipos-de-Comunicación-y-Transformada-de-Fourier"><span class="octicon octicon-link"></span></a><span>Tipos de Comunicación y Transformada de Fourier</span></h1><blockquote>
+<p><small><i class="fa fa-user"></i> Equipo 2 <i class="fa fa-clock-o"></i> Oct 28, 2021 </small></p>
+</blockquote><p><img src="https://i.imgur.com/UkfeAzw.jpg" alt="" loading="lazy"></p><p><span>La utilización de la transformada de Fourier en las telecomunicaciones surge a partir de la naturaleza física de los fenómenos eléctricos, y de su comportamiento, explicado a través de funciones periódicas o movimentos periódicos ondulatorios. Mediante la transformada de Fourier es posible obtener ondas discontinuas, especialmente utiles a la hora de modular señales; el fundamento para su uso radica en que mediante esta transformada discreta es posible transformar una señal del dominio del tiempo o del espacio al dominio de la frecuencia, o su proceso inverso (aplicando antitransformada de Fourier).</span><br>
+<span>Antiguamente, la transformada de Fourier se empleaba mayormente en la solución de ecuaciones diferenciales; actualmente encuentra un vasto campo de aplicación en el análisis de señales discretas, y es ampliamente utilizada en teoría de las comunicaciones , teleprocesamiento, procesamiento de voz e imágenes, entre otras  áreas de la ingeniería.</span></p><h2 id="Tabla-de-Contenidos" data-id="Tabla-de-Contenidos"><a class="anchor hidden-xs" href="#Tabla-de-Contenidos" title="Tabla-de-Contenidos"><span class="octicon octicon-link"></span></a><span>Tabla de Contenidos</span></h2><p><span class="toc"><ul>
+<li><a href="#Tipos-de-Comunicación-y-Transformada-de-Fourier" title="Tipos de Comunicación y Transformada de Fourier">Tipos de Comunicación y Transformada de Fourier</a><ul>
+<li><a href="#Tabla-de-Contenidos" title="Tabla de Contenidos">Tabla de Contenidos</a></li>
+<li><a href="#Comunicación-Analógica" title="Comunicación Analógica">Comunicación Analógica</a><ul>
+<li><a href="#¿Qué-es-la-comunicación-analógica" title="¿Qué es la comunicación analógica?">¿Qué es la comunicación analógica?</a></li>
+<li><a href="#Tipos-de-modulación" title="Tipos de modulación">Tipos de modulación</a></li>
+</ul>
+</li>
+<li><a href="#Comunicación-Digital" title="Comunicación Digital">Comunicación Digital</a><ul>
+<li><a href="#Definición" title="Definición">Definición</a></li>
+<li><a href="#Tipos-de-Modulación" title="Tipos de Modulación">Tipos de Modulación</a></li>
+</ul>
+</li>
+<li><a href="#La-serie-de-Fourier-y-transformada-de-Fourier" title="La serie de Fourier y transformada de Fourier">La serie de Fourier y transformada de Fourier</a><ul>
+<li><a href="#La-serie-de-Fourier" title="La serie de Fourier">La serie de Fourier</a></li>
+<li><a href="#Aplicaciones-de-las-series-de-Fourier" title="Aplicaciones de las series de Fourier">Aplicaciones de las series de Fourier</a></li>
+<li><a href="#Transformada-de-Fourier" title="Transformada de Fourier">Transformada de Fourier</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</span></p><h2 id="Comunicación-Analógica" data-id="Comunicación-Analógica"><a class="anchor hidden-xs" href="#Comunicación-Analógica" title="Comunicación-Analógica"><span class="octicon octicon-link"></span></a><span>Comunicación Analógica</span></h2><p><strong><span>Primero que nada ¿Qué es la una señal analógica?</span></strong><br>
+<span>Una señal analógica es un tipo de señal generada por algún tipo de fenómeno electromagnético; que es representable por una función matemática continua en la que es variable su amplitud y periodo (representando un dato de información) en función del tiempo. Algunas magnitudes físicas comúnmente portadoras de una señal de este tipo son eléctricas como la intensidad, la tensión y la potencia, pero también pueden ser hidráulicas como la presión y térmicas como la temperatura.</span></p><p><strong><span>Señal eléctrica analógica es aquella en la que el valor de tensión o voltaje puede variar en cualquier instante de tiempo.</span></strong><span> Es decir, para cada instante de tiempo existe un valor independiente del resto. Por contra, una señal digital sólo presenta valores en ciertos instantes de tiempo separados por una cantidad constante que depende de la velocidad de muestreo. Las señales analógicas tienen valores continuos, en cambio las señales digitales tienen valores discretos.</span></p><p><span>Una señal analógica puede ser continua o alterna. Será continua cuando su valor de tensión nunca cambie de polaridad (o positivo o negativo). Será alterna cuando el valor de la tensión cambie de polaridad, por ejemplo en una onda sinusoidal, cuya forma se repite con el tiempo y que va incrementando su valor con signo eléctrico positivo (+) durante medio ciclo y disminuyéndolo a continuación con signo eléctrico negativo (–) en el medio ciclo siguiente.</span></p><h3 id="¿Qué-es-la-comunicación-analógica" data-id="¿Qué-es-la-comunicación-analógica"><a class="anchor hidden-xs" href="#¿Qué-es-la-comunicación-analógica" title="¿Qué-es-la-comunicación-analógica"><span class="octicon octicon-link"></span></a><span>¿Qué es la comunicación analógica?</span></h3><blockquote>
+<p><span>Las comunicaciones analógicas son las que contienen infinitos valores en cualquier momento del tiempo y que se desarrollan de manera constante, por ejemplo, la temperatura, la intensidad de la luz o el timbre de la voz. Los sistemas de comunicación analógicos son competentes para transportar señales inteligentes que presentan servicios de voz, imágenes, textos y datos.</span></p>
+</blockquote><p><span>En el sistema analógico se presentan datos por medio de una onda electromagnética que varía constantemente, por ejemplo, en un teléfono acceden datos analógicos por las ondas sonoras de la voz y así surge la señal analógica.</span></p><p><span>Sus principales características son:</span></p><ul>
+<li><span>Si el sistema es analógico, las señales que se transmiten incluyen información de la misma manera que la onda se transmite.</span></li>
+<li><span>La señal incluye información en dicha codificación de los movimientos que se transmiten.</span></li>
+</ul><p><strong><span>Las señales periódicas:</span></strong><span> Habla de la repetición de todos los valores en una parte del tiempo, es decir, en un periodo de tiempo se repite la figura.</span></p><p><strong><span>Señales aperiódicas:</span></strong><span> En esta señal no se repiten los valores, por lo que indica que no se puede saber su desarrollo.</span></p><p><strong><span>Período:</span></strong><span> Es el tiempo (o fase), que se tarda en realizar un ciclo, es decir, lo que tarda en repetir la señal. Los mecanismos de medida del período son:</span></p><ol>
+<li><span>Segundos.</span></li>
+<li><span>Submúltiplos</span></li>
+<li><span>Milisegundos y microsegundos</span></li>
+<li><span>Nanosegundos</span></li>
+<li><span>Picosegundos</span></li>
+</ol><p><strong><span>Frecuencia (f):</span></strong><span> Es la cantidad de ciclos en la que la señal periódica ejecute por segundo. La unidad de medida para la frecuencia se mide en hercios (sus múltiplos son los Kilohercios, megahercios, gigahercios)</span></p><pre><code>F=1/T
+T=1/t
+</code></pre><p><span>Donde</span><br>
+<span>f: Frecuencia</span><br>
+<span>T: Periodo</span><br>
+<span>t: Tiempo</span></p><p><strong><span>Amplitud:</span></strong><span> Es el valor de la señal en cualquier punto de la onda. Es igual a la distancia vertical desde cualquier punto de la onda hasta el eje horizontal. La amplitud se mide en voltios, amperios o watts, dependiendo del tipo de señal.</span></p><h3 id="Tipos-de-modulación" data-id="Tipos-de-modulación"><a class="anchor hidden-xs" href="#Tipos-de-modulación" title="Tipos-de-modulación"><span class="octicon octicon-link"></span></a><span>Tipos de modulación</span></h3><h4 id="Modulación-de-amplitud" data-id="Modulación-de-amplitud"><a class="anchor hidden-xs" href="#Modulación-de-amplitud" title="Modulación-de-amplitud"><span class="octicon octicon-link"></span></a><span>Modulación de amplitud:</span></h4><p><span>Es nombrada AM o también amplitud modulada, funciona por medio de variaciones de la amplitud de la señal transmitida en relación con la información que se remite. La AM es utilizada en la radiofonía, aviones y en las torres de control ubicadas en los aeropuertos, abarcando un rango de frecuencia que va desde 535 a 1705 kHz se envía. Se modula en amplitud una portadora, cuando sea la distancia existente entre un punto de la misma en la que la portadora es 0 y los puntos en que toma el valor máximo o mínimo, la que se altere es la denominada amplitud.</span></p><h4 id="Modulación-de-la-frecuencia" data-id="Modulación-de-la-frecuencia"><a class="anchor hidden-xs" href="#Modulación-de-la-frecuencia" title="Modulación-de-la-frecuencia"><span class="octicon octicon-link"></span></a><span>Modulación de la frecuencia:</span></h4><p><span>Mejor conocida como FM o frecuencia modulada, es una modulación angular que transfiere información mediante una onda portadora variando su frecuencia. En las aplicaciones analógicas, la frecuencia instantánea de la señal modulada es suministrada al valor instantáneo de la señal moduladora.</span></p><h4 id="Modulación-de-la-fase" data-id="Modulación-de-la-fase"><a class="anchor hidden-xs" href="#Modulación-de-la-fase" title="Modulación-de-la-fase"><span class="octicon octicon-link"></span></a><span>Modulación de la fase:</span></h4><p><span>Denominada PM o fase modulada, se caracteriza por la fase de la onda portadora cambia de manera directa suministrando según la señal modulante. Esta fase de modulación no es casi utilizada porque necesita de equipos de recepción más complejos en comparación a los de frecuencia modulada.</span></p><hr><h2 id="Comunicación-Digital" data-id="Comunicación-Digital"><a class="anchor hidden-xs" href="#Comunicación-Digital" title="Comunicación-Digital"><span class="octicon octicon-link"></span></a><span>Comunicación Digital</span></h2><h3 id="Definición" data-id="Definición"><a class="anchor hidden-xs" href="#Definición" title="Definición"><span class="octicon octicon-link"></span></a><span>Definición</span></h3><p><span>Se entiende por comunicación al </span><strong><span>proceso por el cual se transfiere información desde un punto llamado fuente a otro punto llamado destino</span></strong><span>, en los sistemas de comunicación digital, </span><strong><span>los mensajes pertenecen a un conjunto finito y discreto de valores</span></strong><span>, siendo menos sensibles a los ruidos que se superpongan a ellos durante la transmisión.</span></p><blockquote>
+<p><span>Una de las diferencias entre un sistema de comunicación analógico y un sistema de comunicación digital, la marca el tipo de receptor utilizado en cada caso, dichos sistemas de comunicación obligan al receptor a elegir entre un conjunto finito de símbolos. La medida de un sistema de comunicación digital va ligada de decisiones erróneas que se pueden tomar, es decir la probabilidad de error (Pe).</span></p>
+</blockquote><p><span>En los sistemas de comunicación digital cada repetidor reconstruye la señal original, retransmitiéndose libre de ruido. La evolución de este sistema viene marcada por la evolución de las tecnologías en el campo de las telecomunicaciones, lo cual permite una serie de ventajas respecto a los sistemas de comunicación analógica.</span></p><p><span>Entre las principales ventajas de los sistemas de comunicación digitales podemos mencionar:</span></p><ul>
+<li><span>Simplicidad de diseño de los circuitos digitales y facilidad con que se pueden aplicar las técnicas de circuitos integrados a los sistemas digitales.</span></li>
+<li><span>Posibilidad de preservar la intimidad con el uso de una codificación criptográfica.</span></li>
+<li><span>Posibilidad de mezclar y transmitir señales procedentes de diversos servicios.</span></li>
+<li><span>Posibilidad de regeneración de la señal transmitida.</span></li>
+<li><span>Facilidad de multiplicación</span></li>
+<li><span>Mejor respuesta</span></li>
+<li><span>Mejor respuesta ante relaciones señal-ruido bajas.</span></li>
+<li><span>Casi todas las señales analógicas pueden convertirse en señales digitales.</span></li>
+<li><span>Debido a la alta inmunidad al ruido, es prácticamente independiente la calidad de la transmisión con la longitud de enlace.</span></li>
+<li><span>Posibilidad de hace coexistir, en la misma antena, portadoras de microondas para transmisión analógica (multiplex por división en la frecuencia) y para transmisión digital (PCM)</span></li>
+</ul><p><strong><span>Fuente de información digital:</span></strong><span> La fuente de información digital es la encargada de convertir el mensaje que se desea transmitir en una señal eléctrica adecuada al tipo de sistema que se va a utilizar,  por tratarse de un sistema de comunicación digital, la fuente debe generar una señal de tipo digital.</span></p><p><strong><span>Encriptador:</span></strong><span> En los sistemas de comunicación actual surge la necesidad de proporcionar  confidencialidad a las comunicaciones, para ello se utiliza este bloque. Con el cifrado o la criptología se modifica la señal correspondiente a la información de forma que solamente el destinatario autorizado pueda descifrarla</span></p><p><strong><span>Codificador de canal:</span></strong><span> Se encarga de adecuar la señal que se desea transmitir a las condiciones que se van a dar en el canal de transmisión. El codificador añade redundancia a la señal con la intención de poder detectar y corregir los posibles errores de la transmisión.</span></p><p><strong><span>Multiplexador:</span></strong><span> La multiplexación permite compartir los recursos de un sistema de comunicación, por varias señales diferentes. Dentro de los multiplexores se encuentra el MDF (múltiplex por división de frecuencia) y el MDT (múltiplex por división en el tiempo), en este caso se utiliza la M.D.T.</span></p><p><strong><span>Modulador:</span></strong><span> El modulador realiza la operación de la modulación, que es el proceso por el cual se modifica alguna de las características de la portadora mediante la señal moduladora. Los parámetros de la portadora susceptibles de ser modificados son la amplitud, la frecuencia y la fase, así, se obtienen modulaciones digitales como:</span></p><ul>
+<li><span>*ASK</span></li>
+<li><span>FSK</span></li>
+<li><span>PSK</span></li>
+<li><span>M-QAM</span></li>
+<li><span>DPSK</span></li>
+<li><span>Y muchas otras</span></li>
+</ul><p><strong><span>Acceso múltiple:</span></strong><span> Este bloque per mite compartir el canal de transmisión por diferentes señales al igual que ocurría en el bloque de multiplexado. La diferencia entre el bloque de multiplexado y el de acceso múltiple radica en que mientras en el bloque de multiplexado las señales que llegan son en banda base, en el bloque de acceso múltiple se trabaja con señales moduladas.</span><br>
+<span>Hay varios métodos de acceso múltiple, algunos de ellos son: AMDF, AMDT, AMDC, AMDE AMDP y códigos ortogonales.</span></p><p><strong><span>Filtro transmisor:</span></strong><span> Este bloque actúa a modo de filtro, limitando la señal modulada en función del ancho de banda establecido por el canal de transmisión, así mismo adecuará la potencia de transmisión de la señal modulada.</span></p><h3 id="Tipos-de-Modulación" data-id="Tipos-de-Modulación"><a class="anchor hidden-xs" href="#Tipos-de-Modulación" title="Tipos-de-Modulación"><span class="octicon octicon-link"></span></a><span>Tipos de Modulación</span></h3><h4 id="Modulación-por-desplazamiento-de-amplitud" data-id="Modulación-por-desplazamiento-de-amplitud"><a class="anchor hidden-xs" href="#Modulación-por-desplazamiento-de-amplitud" title="Modulación-por-desplazamiento-de-amplitud"><span class="octicon octicon-link"></span></a><span>Modulación por desplazamiento de amplitud</span></h4><p><span>La modulación por desplazamiento de amplitud, en inglés “Amplitude-shift keying” (ASK), es una forma de modulación en la cual se representan los datos digitales como variaciones de amplitud de la onda portadora en función de los datos a enviar.</span><br>
+<span>La amplitud de una señal portadora analógica varía conforme a la corriente de bit (modulando la señal), manteniendo la frecuencia y la fase constante. El nivel de amplitud puede ser usado para representar los valores binarios 0 y 1. Podemos pensar en la señal portadora como un interruptor ON/OFF. En la señal modulada, el valor lógico 0 es representado por la ausencia de una portadora, así que da ON/OFF la operación de pulsación y de ahí el nombre dado.</span><br>
+<span>. Este tipo de modulación por desplazamiento on-off es el utilizado para la transmisión de código Morse por radiofrecuencia, siendo conocido el método como operación en onda continua.</span><br>
+<span>Para ilustrar mejor el tema del interruptor en el modulado ASK se puede ilustrar de la siguiente manera:</span></p><ul>
+<li><span>Señal coseno de amplitud = 0 por lo que en este estado se encontrará en estado 0</span></li>
+<li><span>Señal coseno de amplitud = 1 por lo que en este estado se encontrará en estado 1</span></li>
+</ul><p><span>Otros procedimientos más sofisticados de codificación operan sobre la base de utilizar distintos niveles de amplitud, de forma que cada nivel representa un grupo de datos determinado.</span><br>
+<span>La anotación que se usa es la siguiente:</span></p><ul>
+<li><span>ht(t) es la señal portadora para la transmisión</span></li>
+<li><span>hc(t) es el impulso de respuesta del canal</span></li>
+<li><span>n(t) es el ruido introducido en el canal</span></li>
+<li><span>hr(t) es el filtro en el receptor</span></li>
+<li><span>L es el número de niveles usados para la transmisión</span></li>
+<li><span>Ts es el tiempo que transcurre entre la generación de dos símbolos</span></li>
+</ul><p><strong><span>Probabilidad de error</span></strong><br>
+<span>Es posible demostrar que la posibilidad de que se produzca un error (esto es, un símbolo es interpretado en recepción con valor distinto a como se envió) es:</span><br>
+<span>P_e=(1-1/L)</span><em><span>erfc((A</span></em><span>G_t)/√(2(L-1)σ_N ))</span><br>
+<span>Donde erfc() es la función de error complementario, G_t es la ganancia total del sistema y σ_N es la desviación estándar del ruido. Esta relación es válida cuando no hay interferencia entre símbolos.</span></p><h4 id="Modulación-por-desplazamiento-de-frecuencia" data-id="Modulación-por-desplazamiento-de-frecuencia"><a class="anchor hidden-xs" href="#Modulación-por-desplazamiento-de-frecuencia" title="Modulación-por-desplazamiento-de-frecuencia"><span class="octicon octicon-link"></span></a><span>Modulación por desplazamiento de frecuencia</span></h4><p><span>La modulación por desplazamiento de frecuencia o FSK (“Frequency Shift Keying”) es una técnica de modulación para la transmisión digital de información utilizando dos o más frecuencias diferentes para cada símbolo.1 La señal moduladora solo varía entre dos valores de tensión discretos formando un tren de pulsos donde uno representa un “1” o “marca” y el otro representa el “0” o “espacio”.</span></p><p><span>En la modulación digital, a la relación de cambio a la entrada del modulador se le llama bit-rate y tiene como unidad el bit por segundo (bps).  A la relación de cambio a la salida del modulador se le llama baud-rate. En esencia el baud-rate es la velocidad o cantidad de símbolos por segundo.</span></p><p><strong><span>FSK de la banda reducida:</span></strong><span> Es una variante de FSK que se obtiene cuando la variación de frecuencia de la señal modulada da como resultado una diferencia de fase menor que π/2. El índice de modulación es pequeño. Su espectro de frecuencias es similar al de ASK. Se diferencian en que la amplitud de las armónicas se ve afectada por la frecuencia, superponiéndose a la FSK. Existe una coincidencia entre el ancho de banda necesario para ASK y para FSK de banda reducida.</span></p><p><strong><span>Transmisión de desplazamiento mínimo del FSK:</span></strong><span> Recibe el nombre de MSK y su manera de transmitir es mediante el desplazamiento de la frecuencia de fase continua, CPFSK.</span></p><p><span>Es un FSK binario, salvo por la sincronización de las frecuencias de espacio y marca, a razón de bit de entrada binario, que se seleccionan de tal forma que difieren de la frecuencia central por un múltiplo impar de la mitad de la razón de bit:</span></p><blockquote>
+<p><em><span>n(fb/2)</span></em><span> Siendo n un número entero impar.</span></p>
+</blockquote><p><span>De esta manera, en la señal de salida analógica, aseguramos que exista una transición de fase fluida al variar de una frecuencia de espacio a una de marca.</span></p><h4 id="Modulación-por-desplazamiento-de-fase" data-id="Modulación-por-desplazamiento-de-fase"><a class="anchor hidden-xs" href="#Modulación-por-desplazamiento-de-fase" title="Modulación-por-desplazamiento-de-fase"><span class="octicon octicon-link"></span></a><span>Modulación por desplazamiento de fase</span></h4><p><span>La modulación por desplazamiento de fase o PSK (“Phase Shift Keying”) es una forma de modulación angular que consiste en hacer variar la fase de la portadora entre un número determinado de valores discretos. La diferencia con la modulación de fase convencional (PM) es que mientras en esta la variación de fase es continua, en función de la señal moduladora, en la PSK la señal moduladora es una señal digital y, por tanto, con un número de estados limitado</span></p><p><span>Un modulador PSK representa directamente la información mediante el valor absoluto de la fase de la señal modulada, valor que el demodulador obtiene al comparar la fase de esta con la fase de la portadora sin modular.</span><br>
+<span>La señal modulada resultante, responde a la expresión:</span></p><blockquote>
+<p><span>A_p*cos⁡[2πft+θ]</span><br>
+<span>Donde:</span><br>
+<span>A_p = Amplitud</span><br>
+<span>f = Frecuencia</span><br>
+<span>t = Tiempo</span><br>
+<span>θ  = Representa cada uno de los valores posibles de la fase, tantos como estados tenga la señal codificada en banda base multinivel.</span></p>
+</blockquote><hr><h2 id="La-serie-de-Fourier-y-transformada-de-Fourier" data-id="La-serie-de-Fourier-y-transformada-de-Fourier"><a class="anchor hidden-xs" href="#La-serie-de-Fourier-y-transformada-de-Fourier" title="La-serie-de-Fourier-y-transformada-de-Fourier"><span class="octicon octicon-link"></span></a><span>La serie de Fourier y transformada de Fourier</span></h2><h3 id="La-serie-de-Fourier" data-id="La-serie-de-Fourier"><a class="anchor hidden-xs" href="#La-serie-de-Fourier" title="La-serie-de-Fourier"><span class="octicon octicon-link"></span></a><span>La serie de Fourier</span></h3><p><span>Esta serie se usa en análisis de señales para representar las componentes senoidales de una onda periódica no senoidal, es decir, para cambiar una señal en el dominio del tiempo a una señal en el dominio de la frecuencia. En general, se puede obtener una serie de Fourier para cualquier función periódica, en forma de una serie de funciones trigonométricas con la siguiente forma matemática</span></p><p><span>donde α = β</span></p><p><span>La ecuación indica que la forma de onda f (t) comprende un valor promedio (A0) de cd, una serie de funciones cosenoidales en las que cada término sucesivo tiene una frecuencia que es múltiplo entero de la frecuencia del primer término cosenoidal de la serie, y una serie de funciones senoidales en la que cada término sucesivo tiene una frecuencia que es múltiplo entero de la del primer término senoidal de la serie.</span></p><h4 id="Simetría-de-onda" data-id="Simetría-de-onda"><a class="anchor hidden-xs" href="#Simetría-de-onda" title="Simetría-de-onda"><span class="octicon octicon-link"></span></a><span>Simetría de onda</span></h4><p><span>Dicho en términos sencillos, la simetría de la onda describe la simetría de una forma de onda en el dominio del tiempo, esto es, su posición relativa con respecto a los ejes horizontal (tiempo) y vertical (amplitud).</span></p><ul>
+<li>
+<p><strong><span>Simetría Par:</span></strong><span> Si una forma de onda periódica de voltaje es simétrica respecto al eje vertical (amplitud) se dice que tiene simetría especular, o de ejes, y se llama función par. Para todas las funciones pares, los coeficientes B de la ecuación son cero. Por consiguiente, la señal sólo contiene un componente de cd y los términos cosenoidales (nótese que la misma onda cosenoide es una función par). La suma de una serie de funciones pares es una función par.</span></p>
+</li>
+<li>
+<p><strong><span>Simetría Impar:</span></strong><span> Si una forma periódica de onda de voltaje es simétrica respecto a una línea intermedia entre el eje vertical y el horizontal negativo (es decir, a los ejes en el segundo y cuarto cuadrantes) y pasa por el origen de las coordenadas, se dice que tiene una simetría puntual o que es antisimétrica, y se le llama función impar. Para todas las funciones impares, los coeficientes A de la ecuación son cero. Por consiguiente, la señal tan sólo contiene un componente de cd y los términos senoidales (nótese que la misma onda seno es una función impar).</span></p>
+</li>
+<li>
+<p><strong><span>Simetría de Media Onda:</span></strong><span> Si una forma de onda periódica de voltaje es tal que la onda del primer medio ciclo (t =0 a t = T/2) se repite, pero con signo contrario, durante el segundo medio ciclo (t = T/2 a t = T), se dice que tiene simetría de media onda. Para todas las formas de onda con simetría de media onda, las armónicas pares de la serie, en los términos en seno y en coseno, son cero.</span></p>
+</li>
+</ul><h3 id="Aplicaciones-de-las-series-de-Fourier" data-id="Aplicaciones-de-las-series-de-Fourier"><a class="anchor hidden-xs" href="#Aplicaciones-de-las-series-de-Fourier" title="Aplicaciones-de-las-series-de-Fourier"><span class="octicon octicon-link"></span></a><span>Aplicaciones de las series de Fourier</span></h3><ul>
+<li><span>Generación de formas de onda de corriente o tensión eléctrica por medio de la superposición de sinusoides generados por osciladores electrónicos de amplitud variable cuyas frecuencias ya están determinadas.</span></li>
+<li><span>Análisis en el comportamiento armónico de una señal.</span></li>
+<li><span>Reforzamiento de señales.</span></li>
+<li><span>Estudio de la respuesta en el tiempo de una variable circuital eléctrica donde la señal de entrada no es sinusoidal o cosinusoidal, mediante el uso de transformadas de Laplace y/o solución en régimen permanente sinusoidal en el dominio de la frecuencia.</span></li>
+<li><span>La resolución de algunas ecuaciones diferenciales en derivadas parciales admite soluciones particulares en forma de series de Fourier fácilmente computables, y que obtener soluciones prácticas, en la teoría de la transmisión del calor, la teoría de placas, etc.</span></li>
+</ul><h3 id="Transformada-de-Fourier" data-id="Transformada-de-Fourier"><a class="anchor hidden-xs" href="#Transformada-de-Fourier" title="Transformada-de-Fourier"><span class="octicon octicon-link"></span></a><span>Transformada de Fourier</span></h3><p><span>La palabra ”transformada” indica que estamos trabajando con una herramienta para transformar un tipo determinado de problema en otro. De hecho, la transformada de Fourier será útil (como veremos) para simplificar el estudio de la solución de cierto tipo de ecuaciones diferenciales, convirtiendo el problema de la solución de una ED en un problema de solución de ecuaciones algebraicas. La motivación para dicho estudio está en el hecho de que la transformada de Fourier posee buenas propiedades algebraicas cuando se aplica a las derivadas sucesivas de una señal, o al trasladar la señal, etc.</span></p><p><span>para todo Z ∈ R donde la expresión anterior tenga sentido, es decir, donde la integral impropia anterior sea convergente.</span></p><h4 id="Transformada-de-Fourier-discreta" data-id="Transformada-de-Fourier-discreta"><a class="anchor hidden-xs" href="#Transformada-de-Fourier-discreta" title="Transformada-de-Fourier-discreta"><span class="octicon octicon-link"></span></a><span>Transformada de Fourier discreta</span></h4><p><span>En esa transformación se muestrea una señal en el dominio del tiempo, en tiempos discretos. Las muestras se alimentan a una computadora donde un algoritmo calcula la transformación. Sin embargo, el tiempo de computación es proporcional a n elevada 2, siendo n la cantidad de muestras. Para cualquier cantidad razonable de muestras, el tiempo de computación es excesivo.</span></p><h4 id="Transformada-de-Fourier-rápida" data-id="Transformada-de-Fourier-rápida"><a class="anchor hidden-xs" href="#Transformada-de-Fourier-rápida" title="Transformada-de-Fourier-rápida"><span class="octicon octicon-link"></span></a><span>Transformada de Fourier rápida</span></h4><p><span>Esta fue creada en 1965, por Cooley y Tukey. el tiempo de cómputo es proporcional a n log2 n, y no a n elevada 2. Hoy se cuenta con la FFT(fast Fourier Transform) en forma de subrutina, en muchas bibliotecas de subrutinas científicas en los grandes centros de cómputo.</span></p><p><strong><span>Propiedades</span></strong></p><ul>
+<li><strong><span>Existencia:</span></strong><span> Las dos condiciones siguientes son suficientes para la existencia de la transformada de Fourier de un función f(τ) definida en R y son:</span>
+<ol>
+<li><span>f(τ) es continua a trozos en R.</span></li>
+<li><span>f(τ) es absolutamente integrable en R.</span></li>
+</ol>
+</li>
+<li><strong><span>Linealidad de la transformación de Fourier:</span></strong><span> Para cualesquiera funciones f() y g() cuyas transformadas de Fourier existen y para constantes a y b cualesquiera.</span></li>
+<li><strong><span>Transformada de Fourier de la derivada:</span></strong><span> Sea f una función continua y absolutamente integrable en R con y f´ continua a trozos en R.</span></li>
+<li><strong><span>Cambio de escala:</span></strong><span> Sea a &gt; 0. Si f es una función continua y absolutamente integrable en R</span></li>
+<li><strong><span>Derivada de la transformada:</span></strong><span> Si f es una función continua y absolutamente integrable en R, entonces</span></li>
+<li><strong><span>Convolución:</span></strong><span> El objetivo es el mismo que en el caso de la transformada de Laplace : la convolución de funciones corresponde a la multiplicación de sus transformadas de Fourier Sean f y g dos funciones continuas por secciones, acotadas y absolutamente integrables. Entonces</span></li>
+</ul><hr><h6 id="Tags-Comunicación-Digital-Comunicación-Analógica-Series-de-Fourier-Transformada-de-Fourier-Telecomunicaciones" data-id="Tags-Comunicación-Digital-Comunicación-Analógica-Series-de-Fourier-Transformada-de-Fourier-Telecomunicaciones"><a class="anchor hidden-xs" href="#Tags-Comunicación-Digital-Comunicación-Analógica-Series-de-Fourier-Transformada-de-Fourier-Telecomunicaciones" title="Tags-Comunicación-Digital-Comunicación-Analógica-Series-de-Fourier-Transformada-de-Fourier-Telecomunicaciones"><span class="octicon octicon-link"></span></a><span>Tags: </span><code>Comunicación Digital</code><span> </span><code>Comunicación Analógica</code><span> </span><code>Series de Fourier</code><span> </span><code>Transformada de Fourier</code><span> </span><code>Telecomunicaciones</code></h6><blockquote>
+<p><small><i class="fa fa-user"></i> Lameda, M., Mata, J., Ortíz, J. y Roa M. <i class="fa fa-clock-o"></i> Oct 28, 2021 </small></p>
+</blockquote><div class="alert alert-info">
+<p><strong><span>Te gustó este artículo?</span></strong><span> Deja un comentario</span></p>
+</div></div>
+    <div class="ui-toc dropup unselectable hidden-print" style="display:none;">
+        <div class="pull-right dropdown">
+            <a id="tocLabel" class="ui-toc-label btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" title="Table of content">
+                <i class="fa fa-bars"></i>
+            </a>
+            <ul id="ui-toc" class="ui-toc-dropdown dropdown-menu" aria-labelledby="tocLabel">
+                <div class="toc"><ul class="nav">
+<li><a href="#Tipos-de-Comunicación-y-Transformada-de-Fourier" title="Tipos de Comunicación y Transformada de Fourier">Tipos de Comunicación y Transformada de Fourier</a><ul class="nav">
+<li><a href="#Tabla-de-Contenidos" title="Tabla de Contenidos">Tabla de Contenidos</a></li>
+<li><a href="#Comunicación-Analógica" title="Comunicación Analógica">Comunicación Analógica</a><ul class="nav">
+<li><a href="#¿Qué-es-la-comunicación-analógica" title="¿Qué es la comunicación analógica?">¿Qué es la comunicación analógica?</a></li>
+<li><a href="#Tipos-de-modulación" title="Tipos de modulación">Tipos de modulación</a></li>
+</ul>
+</li>
+<li><a href="#Comunicación-Digital" title="Comunicación Digital">Comunicación Digital</a><ul class="nav">
+<li><a href="#Definición" title="Definición">Definición</a></li>
+<li><a href="#Tipos-de-Modulación" title="Tipos de Modulación">Tipos de Modulación</a></li>
+</ul>
+</li>
+<li><a href="#La-serie-de-Fourier-y-transformada-de-Fourier" title="La serie de Fourier y transformada de Fourier">La serie de Fourier y transformada de Fourier</a><ul class="nav">
+<li><a href="#La-serie-de-Fourier" title="La serie de Fourier">La serie de Fourier</a></li>
+<li><a href="#Aplicaciones-de-las-series-de-Fourier" title="Aplicaciones de las series de Fourier">Aplicaciones de las series de Fourier</a></li>
+<li><a href="#Transformada-de-Fourier" title="Transformada de Fourier">Transformada de Fourier</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div><div class="toc-menu"><a class="expand-toggle" href="#">Expand all</a><a class="back-to-top" href="#">Back to top</a><a class="go-to-bottom" href="#">Go to bottom</a></div>
+            </ul>
+        </div>
+    </div>
+    <div id="ui-toc-affix" class="ui-affix-toc ui-toc-dropdown unselectable hidden-print" data-spy="affix" style="top:17px;display:none;" null null>
+        <div class="toc"><ul class="nav">
+<li><a href="#Tipos-de-Comunicación-y-Transformada-de-Fourier" title="Tipos de Comunicación y Transformada de Fourier">Tipos de Comunicación y Transformada de Fourier</a><ul class="nav">
+<li><a href="#Tabla-de-Contenidos" title="Tabla de Contenidos">Tabla de Contenidos</a></li>
+<li><a href="#Comunicación-Analógica" title="Comunicación Analógica">Comunicación Analógica</a><ul class="nav">
+<li><a href="#¿Qué-es-la-comunicación-analógica" title="¿Qué es la comunicación analógica?">¿Qué es la comunicación analógica?</a></li>
+<li><a href="#Tipos-de-modulación" title="Tipos de modulación">Tipos de modulación</a></li>
+</ul>
+</li>
+<li><a href="#Comunicación-Digital" title="Comunicación Digital">Comunicación Digital</a><ul class="nav">
+<li><a href="#Definición" title="Definición">Definición</a></li>
+<li><a href="#Tipos-de-Modulación" title="Tipos de Modulación">Tipos de Modulación</a></li>
+</ul>
+</li>
+<li><a href="#La-serie-de-Fourier-y-transformada-de-Fourier" title="La serie de Fourier y transformada de Fourier">La serie de Fourier y transformada de Fourier</a><ul class="nav">
+<li><a href="#La-serie-de-Fourier" title="La serie de Fourier">La serie de Fourier</a></li>
+<li><a href="#Aplicaciones-de-las-series-de-Fourier" title="Aplicaciones de las series de Fourier">Aplicaciones de las series de Fourier</a></li>
+<li><a href="#Transformada-de-Fourier" title="Transformada de Fourier">Transformada de Fourier</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div><div class="toc-menu"><a class="expand-toggle" href="#">Expand all</a><a class="back-to-top" href="#">Back to top</a><a class="go-to-bottom" href="#">Go to bottom</a></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gist-embed/2.6.0/gist-embed.min.js" integrity="sha256-KyF2D6xPIJUW5sUDSs93vWyZm+1RzIpKCexxElmxl8g=" crossorigin="anonymous" defer></script>
+    <script>
+        var markdown = $(".markdown-body");
+        //smooth all hash trigger scrolling
+        function smoothHashScroll() {
+            var hashElements = $("a[href^='#']").toArray();
+            for (var i = 0; i < hashElements.length; i++) {
+                var element = hashElements[i];
+                var $element = $(element);
+                var hash = element.hash;
+                if (hash) {
+                    $element.on('click', function (e) {
+                        // store hash
+                        var hash = this.hash;
+                        if ($(hash).length <= 0) return;
+                        // prevent default anchor click behavior
+                        e.preventDefault();
+                        // animate
+                        $('body, html').stop(true, true).animate({
+                            scrollTop: $(hash).offset().top
+                        }, 100, "linear", function () {
+                            // when done, add hash to url
+                            // (default click behaviour)
+                            window.location.hash = hash;
+                        });
+                    });
+                }
+            }
+        }
+
+        smoothHashScroll();
+        var toc = $('.ui-toc');
+        var tocAffix = $('.ui-affix-toc');
+        var tocDropdown = $('.ui-toc-dropdown');
+        //toc
+        tocDropdown.click(function (e) {
+            e.stopPropagation();
+        });
+
+        var enoughForAffixToc = true;
+
+        function generateScrollspy() {
+            $(document.body).scrollspy({
+                target: ''
+            });
+            $(document.body).scrollspy('refresh');
+            if (enoughForAffixToc) {
+                toc.hide();
+                tocAffix.show();
+            } else {
+                tocAffix.hide();
+                toc.show();
+            }
+            $(document.body).scroll();
+        }
+
+        function windowResize() {
+            //toc right
+            var paddingRight = parseFloat(markdown.css('padding-right'));
+            var right = ($(window).width() - (markdown.offset().left + markdown.outerWidth() - paddingRight));
+            toc.css('right', right + 'px');
+            //affix toc left
+            var newbool;
+            var rightMargin = (markdown.parent().outerWidth() - markdown.outerWidth()) / 2;
+            //for ipad or wider device
+            if (rightMargin >= 133) {
+                newbool = true;
+                var affixLeftMargin = (tocAffix.outerWidth() - tocAffix.width()) / 2;
+                var left = markdown.offset().left + markdown.outerWidth() - affixLeftMargin;
+                tocAffix.css('left', left + 'px');
+            } else {
+                newbool = false;
+            }
+            if (newbool != enoughForAffixToc) {
+                enoughForAffixToc = newbool;
+                generateScrollspy();
+            }
+        }
+        $(window).resize(function () {
+            windowResize();
+        });
+        $(document).ready(function () {
+            windowResize();
+            generateScrollspy();
+        });
+
+        //remove hash
+        function removeHash() {
+            window.location.hash = '';
+        }
+
+        var backtotop = $('.back-to-top');
+        var gotobottom = $('.go-to-bottom');
+
+        backtotop.click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (scrollToTop)
+                scrollToTop();
+            removeHash();
+        });
+        gotobottom.click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (scrollToBottom)
+                scrollToBottom();
+            removeHash();
+        });
+
+        var toggle = $('.expand-toggle');
+        var tocExpand = false;
+
+        checkExpandToggle();
+        toggle.click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            tocExpand = !tocExpand;
+            checkExpandToggle();
+        })
+
+        function checkExpandToggle () {
+            var toc = $('.ui-toc-dropdown .toc');
+            var toggle = $('.expand-toggle');
+            if (!tocExpand) {
+                toc.removeClass('expand');
+                toggle.text('Expand all');
+            } else {
+                toc.addClass('expand');
+                toggle.text('Collapse all');
+            }
+        }
+
+        function scrollToTop() {
+            $('body, html').stop(true, true).animate({
+                scrollTop: 0
+            }, 100, "linear");
+        }
+
+        function scrollToBottom() {
+            $('body, html').stop(true, true).animate({
+                scrollTop: $(document.body)[0].scrollHeight
+            }, 100, "linear");
+        }
+    </script>
+</body>
+
+</html>
